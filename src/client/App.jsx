@@ -9,7 +9,7 @@ class App extends React.Component {
       this.state = {
         currentItems : "",
         list : [],
-        errorMessage : ""
+        errorMessage : "Please input something!"
       }
   }
 
@@ -22,13 +22,18 @@ class App extends React.Component {
     console.log(this.state.list)
     let newList = this.state.list;
     newList.push(this.state.currentItems);
-    this.setState({list:newList, currentItems : "", errorMessage : ""});
+    this.setState({list:newList, currentItems : "", errorMessage : "Please input something!"});
   }
     
     render() {
         // console.log("rendering");
         let list  = this.state.list.map( (oneItem) => {
-        return <p>{oneItem}</p>
+          if ( {oneItem} === "" ) {
+            return this.state.errorMessage
+          }
+          else {
+            return <p>{oneItem}</p>
+          }
         })
 
         return (
